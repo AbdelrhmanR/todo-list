@@ -1,7 +1,7 @@
 import React from "react";
 import { TodoProvider } from "./context/TodoContext";
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList"; // ⬅️ أضف السطر ده
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
         <h1>Todo List</h1>
         <TodoForm />
         <TodoList />
-        {/* هنضيف الليست هنا بعدين */}
       </div>
     </TodoProvider>
   );
