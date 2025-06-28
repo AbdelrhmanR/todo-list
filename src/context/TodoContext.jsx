@@ -7,6 +7,7 @@ const TodoContext = createContext();
 // 2. المزوّد العام
 export function TodoProvider({ children }) {
   const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState("all"); // ⬅️ نقلناه هنا ✅
 
   const addTodo = (title, body) => {
     const newTodo = {
@@ -31,19 +32,25 @@ export function TodoProvider({ children }) {
   };
 
   const updateTodo = (id, newTitle, newBody) => {
-  setTodos((prev) =>
-    prev.map((todo) =>
-      todo.id === id ? { ...todo, title: newTitle, body: newBody } : todo
-    )
-  );
-};
-
-
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle, body: newBody } : todo
+      )
+    );
+  };
 
   return (
     <TodoContext.Provider
-    value={{ todos, addTodo, deleteTodo, toggleComplete, updateTodo }}
-  >
+      value={{
+        todos,
+        addTodo,
+        deleteTodo,
+        toggleComplete,
+        updateTodo,
+        filter,
+        setFilter,
+      }}
+    >
       {children}
     </TodoContext.Provider>
   );

@@ -5,7 +5,14 @@ import { List, Typography, Divider } from "@mui/material";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
-  const { todos } = useTodos();
+  const { todos, filter } = useTodos();
+
+    const filteredTodos = todos.filter((todo) => {
+      if (filter === "active") return !todo.completed;
+      if (filter === "completed") return todo.completed;
+      return true; // all
+    });
+
 
   if (todos.length === 0) {
     return <Typography variant="h6">No todos yet</Typography>;
@@ -13,7 +20,7 @@ function TodoList() {
 
   return (
     <List>
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <React.Fragment key={todo.id}>
           <TodoItem todo={todo} />
           <Divider />
