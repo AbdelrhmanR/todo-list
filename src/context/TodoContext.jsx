@@ -30,8 +30,20 @@ export function TodoProvider({ children }) {
     );
   };
 
+  const updateTodo = (id, newTitle, newBody) => {
+  setTodos((prev) =>
+    prev.map((todo) =>
+      todo.id === id ? { ...todo, title: newTitle, body: newBody } : todo
+    )
+  );
+};
+
+
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, deleteTodo, toggleComplete }}>
+    <TodoContext.Provider
+    value={{ todos, addTodo, deleteTodo, toggleComplete, updateTodo }}
+  >
       {children}
     </TodoContext.Provider>
   );
